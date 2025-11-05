@@ -35,14 +35,20 @@ function Bot() {
         if (e.key === 'Enter') handleSendMessage()}
             
   return (
-    <div className='flex flex-col min-h-screen bg-[#0d0d0d] text-white'>
-         {/* Navbar & Header */}
-      <header className="fixed top-0 left-0 w-full border-b border-gray-800 bg-[#0d0d0d] z-10">
-        <div className=" container mx-auto flex justify-between items-center px-6 py-4">
-          <h1 className="text-lg font-bold">BotSpoof</h1>
-          <FaUserCircle size={30} className="cursor-pointer" />
-        </div>
-      </header>
+   <div className="flex flex-col min-h-screen bg-gradient-to-tr from-[#f13ce5] via-[#ef91f9] to-[#ecb7e5] text-white">
+
+     <header className="fixed top-0 left-0 w-full bg-gradient-to-r from-[#0f0f0f] via-[#ef91f9] to-[#ecb7e5] border-b border-gray-800 shadow-md z-10">
+  <div className="container mx-auto flex justify-between items-center px-6 py-4">
+    <h1 className="text-3xl font-bold text-white tracking-widest drop-shadow-[0_0_10px_#00ffcc]">
+      LUNA
+    </h1>
+    <FaUserCircle size={30} className="cursor-pointer text-white hover:text-[#000000] transition-colors duration-300" />
+  </div>
+</header>
+
+
+
+
 
       {/* Chat area */}
       <main className="flex-1 overflow-y-auto pt-20 pb-24 flex items-center justify-center">
@@ -51,7 +57,7 @@ function Bot() {
             // Centered welcome message
             <div className="text-center text-gray-400 text-lg">
               👋 Hi, I'm{" "}
-              <span className="text-green-500 font-semibold">BotSpoof</span>.
+              <span className="text-green-500 font-semibold">LUNA</span>.
             </div>
           ) : (
             <>
@@ -80,26 +86,26 @@ function Bot() {
       </main>
 
       {/* Input & Footer */}
-      <footer className="fixed bottom-0 left-0 w-full border-t border-gray-800 bg-[#0d0d0d] z-10">
-        <div className="max-w-4xl mx-auto flex justify-center px-4 py-3">
-          <div className="w-full flex bg-gray-900 rounded-full px-4 py-2 shadow-lg">
-            <input
-              type="text"
-              className="flex-1 bg-transparent outline-none text-white placeholder-gray-400 px-2"
-              placeholder="Ask BotSpoof..."
-             value={input}
-             onChange={(e) => setInput(e.target.value)}
-             onKeyDown={handleKeyPress}
-            />
-            <button
-             onClick={handleSendMessage}
-              className="bg-green-600 hover:bg-green-700 px-4 py-1 rounded-full text-white font-medium transition-colors"
-            >
-              Send
-            </button>
-          </div>
-        </div>
-      </footer>
+      <footer className="fixed bottom-0 left-0 w-full ">
+  <div className="max-w-4xl mx-auto flex justify-center px-4 py-3">
+    <div className="w-full flex bg-gray-900 rounded-full px-4 py-2 shadow-lg">
+      <input
+        type="text"
+        className="flex-1 bg-transparent outline-none text-white placeholder-gray-400 px-2"
+        placeholder="Ask me anything..."
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyPress}
+      />
+      <button
+        onClick={handleSendMessage}
+        className="bg-green-600 hover:bg-green-700 px-4 py-1 rounded-full text-white font-medium transition-colors"
+      >
+        Send
+      </button>
+    </div>
+  </div>
+</footer>
     </div>
   )
 }
