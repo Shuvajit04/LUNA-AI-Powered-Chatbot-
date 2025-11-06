@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* index.css (append at bottom) */
+@keyframes textLoop {
+  0%,
+  40% {
+    transform: translateY(0%);
+  }
+  50%,
+  90% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+/* wrapper keeps a fixed height equal to one line; relative for inner absolute */
+.loop-wrapper {
+  position: relative;
+  display: inline-block;
+  height: 1.25rem; /* ~20px — adjust to fit your font-size; Tailwind h-6 ~= 1.5rem */
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+/* inner stack of words */
+.loop-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  animation: textLoop 3s ease-in-out infinite;
+  line-height: 1.25rem; /* match wrapper height */
+}
+
+/* ensure each word occupies one line */
+.loop-inner > .word {
+  display: block;
+  height: 1.25rem;
+}
+.glass-shadow {
+  backdrop-filter: blur(10px);
+  background: rgba(31, 41, 55, 0.6); /* semi-transparent gray */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
