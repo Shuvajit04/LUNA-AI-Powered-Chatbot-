@@ -27,7 +27,7 @@ ve design powered by TailwindCSS
 |-------|-------------|
 | 🖥️ Frontend | React.js (Vite) |
 
-https://github.com/user-attachments/assets/aabd81c4-f091-4b58-8b68-403f30c0b7e1
+
 
 
 | 🎨 Styling | Tailwind CSS + Custom CSS |
