@@ -7,7 +7,11 @@ Built with ❤️ using **React**, **Node.js**, and a sprinkle of **AI magic**, 
 
 ## 🚀 Features
 
-🔥 **Interactive UI** – Sleek and responsive design powered by TailwindCSS  
+🔥 **Interactive UI** – Sleek and responsi
+
+https://github.com/user-attachments/assets/f2108ba3-e005-4304-bbbe-8f1bd088291a
+
+ve design powered by TailwindCSS  
 🧠 **Smart Conversations** – Handles dynamic responses using intelligent string matching  
 💬 **Message Bubbles** – Clean chat layout with glowing user & bot message effects  
 🌈 **Animated Intro** – Smooth looping “Hi, I’m LUNA / AI” text animation  
@@ -22,6 +26,10 @@ Built with ❤️ using **React**, **Node.js**, and a sprinkle of **AI magic**, 
 | Layer | Technology |
 |-------|-------------|
 | 🖥️ Frontend | React.js (Vite) |
+
+https://github.com/user-attachments/assets/aabd81c4-f091-4b58-8b68-403f30c0b7e1
+
+
 | 🎨 Styling | Tailwind CSS + Custom CSS |
 | 🧠 Logic | JavaScript + Context API / Store |
 | 🎵 UI Enhancements | Framer Motion (animations) |
