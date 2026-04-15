@@ -10,10 +10,16 @@ export const Message=async(req,res)=>{
         return res.status(400).json({error:"Text cannot be empty"});
     }
 
-    const user=await User.create({
+    let userMessageText = text.trim();
+    try {
+      const user = await User.create({
         sender:"user",
         text
-    })
+      });
+      userMessageText = user.text.trim();
+    } catch (error) {
+      console.log("User message not persisted:", error?.message || error);
+    }
 
     // Data
     const botResponses={
@@ -359,11 +365,54 @@ export const Message=async(req,res)=>{
   "who is virat kohli": "Virat Kohli — one of India’s best cricketers 🏏",
   "what is cricket": "Cricket is a bat-and-ball sport loved across India 🏏",
   "what is football": "Football (soccer) is the world’s most popular sport ⚽",
-  "what is olympics": "The Olympics are global sports competitions held every 4 years 🥇"
+  "what is olympics": "The Olympics are global sports competitions held every 4 years 🥇",
 
+  "what is clientsphere": "ClientSphere is a smart client management system.\n• Helps businesses store, track, and manage client records\n• Provides tools for viewing, editing, and organizing client data\n• Includes search, filtering, analytics, and quick actions\n• Designed to be fast, secure, and easy to use",
 
+  "what services do you provide": "We provide complete client management services.\n• Client record storage\n• Add, edit, delete, and view clients\n• Company-wise client insights\n• Search and quick filtering\n• Secure data handling and API support",
 
+  "how can i contact support": "You can reach ClientSphere support anytime.\n• Email: support@clientsphere.com\n• Phone: +91 XXXXX XXXXX\n• Chat support available 24/7\nWe usually respond within 24 hours.",
 
+  "is my data secure": "Yes, all client data is fully secured.\n• Encrypted communication (HTTPS)\n• Secure server-side storage\n• Access-controlled operations\n• Regular backups and integrity checks",
+
+  "how do i add a new client": "Adding a client is simple.\n• Click the 'Add New Client' button in the dashboard\n• Fill in name, email, phone, and company details\n• Save the record\nYour client will appear instantly in the table.",
+
+  "can i edit a client": "Yes, you can edit any client record.\n• Click on the 'Edit' button in the Actions column\n• Modify the necessary details\n• Save changes to update the record",
+
+  "what if i face an issue": "If you experience any issue while using ClientSphere:\n• Refresh the page and try again\n• Check your internet connection\n• Contact support if the issue continues\nWe are always here to help.",
+
+  "do you offer custom features": "Yes, ClientSphere supports customization.\n• Custom fields\n• API integration\n• Role-based access\n• Dashboard personalization\nContact us for more details.",
+
+  "can my team use clientsphere": "Yes, ClientSphere supports multiple users.\n• Different roles (Admin, Manager, Staff)\n• Permission-based access control\n• Activity logging for accountability",
+"how do i search for a client": "You can quickly find any client.\n• Use the search bar at the top\n• Type name, email, or company\n• Results update instantly\n• Clear the search to view all clients again",
+
+  "can i view detailed information of a client": "Yes, you can view full client details.\n• Click the 'View' button in the Actions column\n• A modal will show complete client info\n• Includes name, email, phone, company, and more",
+
+  "how do i delete a client": "Deleting a client is simple.\n• Click the 'Delete' icon in the table\n• Confirm your action\n• The client will be removed from the list instantly",
+
+  "does the system auto update when i add a client": "Yes, the list updates in real-time.\n• When you add a new client\n• The data appears immediately in the table\n• No need to refresh the page",
+
+  "can i access clientsphere on mobile": "Yes, ClientSphere is fully responsive.\n• Works on mobile phones\n• Works on tablets\n• Auto adjusts layout for smaller screens",
+
+  "is clientsphere free": "ClientSphere offers flexible plans.\n• Free basic plan available\n• Premium plan for advanced features\n• Enterprise plan with customization\nPlans depend on your usage and requirements.",
+
+  "can i export client data": "Yes, data export is supported.\n• Export as CSV\n• Suitable for Excel and Google Sheets\n• Useful for reporting and backups",
+
+  "can i integrate it with my crm": "Yes, integration is possible.\n• Supports API-based data sync\n• Can communicate with third-party CRMs\n• Custom integration available on request",
+
+  "how fast is the system": "ClientSphere is optimized for speed.\n• Instant search\n• Fast loading dashboard\n• Smooth table interactions\n• Designed for large data sets",
+
+  "what technologies are used": "ClientSphere is built with modern technologies.\n• Frontend: React + Vite\n• Styling: Tailwind CSS\n• Backend API: REST API\n• Database: Secure cloud storage",
+
+  "what makes clientsphere different": "ClientSphere stands out because:\n• Clean and modern UI\n• Very fast performance\n• Easy to use for all teams\n• Real-time updates\n• Secure and reliable",
+
+  "do i need training to use clientsphere": "No, the system is easy to understand.\n• Simple navigation\n• Clear buttons and controls\n• Help guide available\n• Training optional for teams",
+
+  "what browsers do you support": "ClientSphere works on all major browsers.\n• Chrome\n• Edge\n• Firefox\n• Safari\n• Brave",
+
+  "how often is the system updated": "ClientSphere receives regular updates.\n• Bug fixes\n• Performance improvements\n• New features\n• Security enhancements",
+  
+  "can i restore deleted clients": "Currently deleted clients cannot be restored.\n• Delete carefully\n• Future updates may include a recycle bin option"
 
 
 }
@@ -395,14 +444,20 @@ if (mathRegex.test(normalizedText)) {
   }
 }
 
-// Step 3️⃣ Save bot message
-const bot = await Bot.create({
-  text: botResponse.trim(),
-});
+// Step 3️⃣ Save bot message (best effort)
+let botMessageText = botResponse.trim();
+try {
+  const bot = await Bot.create({
+    text: botResponse.trim(),
+  });
+  botMessageText = bot.text.trim();
+} catch (error) {
+  console.log("Bot message not persisted:", error?.message || error);
+}
 
 return res.status(200).json({
-  userMessage: user.text.trim(),
-  botMessage: bot.text.trim(),
+  userMessage: userMessageText,
+  botMessage: botMessageText,
 });
 } catch (error) {
   console.log("Error in Message Controller:", error);

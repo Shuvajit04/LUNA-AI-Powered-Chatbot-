@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { FaUserCircle } from 'react-icons/fa'
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://luna-ai-powered-chatbot.onrender.com";
+
 function Bot() {
     const [messages,setMessages]=useState([])
     const [input,setInput]=useState("")
@@ -14,10 +17,10 @@ function Bot() {
     },[messages])
 
     const handleSendMessage = async () => {
-        setLoading(true);
         if(!input.trim()) return;
+        setLoading(true);
         try {
-           const res=await axios.post("http://localhost:4002/bot/v1/message",{
+           const res=await axios.post(`${API_BASE_URL}/bot/v1/message`,{
                 text: input
             })
             if(res.status === 200) {

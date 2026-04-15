@@ -80,3 +80,26 @@ git clone https://github.com/yourusername/LUNA-AI-ChatBot.git
 
 
 
+## Deploy backend on Railway and frontend on Vercel
+
+### 1) Deploy backend to Railway
+- Create a new Railway project from this repo.
+- Set **Root Directory** to `backend`.
+- Add environment variable:
+  - `MONGO_URI=your_mongodb_connection_string`
+- Railway will run `npm start` (configured in `backend/package.json`).
+- After deploy, copy backend URL (example: `https://your-app.up.railway.app`).
+
+### 2) Redeploy frontend to Vercel
+- Keep Vercel pointed to this repo (or set root to `frontend`).
+- Add frontend env var in Vercel:
+  - `VITE_API_BASE_URL=https://your-app.up.railway.app`
+- Redeploy the project from Vercel dashboard.
+
+### 3) Local development
+- Backend local: `cd backend && npm run dev`
+- Frontend local: `cd frontend && npm run dev`
+- Frontend will use:
+  - `VITE_API_BASE_URL` when provided
+  - otherwise fallback `http://localhost:4002`
+
